@@ -39,7 +39,10 @@ export default function RootLayout({
                 <DevtoolsProvider>
                   <Refine
                     routerProvider={routerProvider}
-                    dataProvider={dataProvider}
+                    dataProvider={{
+                      default: dataProvider,
+                      bills: billsDataProvider,
+                    }}
                     notificationProvider={useNotificationProvider}
                     authProvider={authProviderClient}
                     resources={[
@@ -63,6 +66,14 @@ export default function RootLayout({
                           canDelete: true,
                         },
                       },
+                      {
+                        name: "invoices",
+                        list: "/invoices",
+                      },
+                      {
+                        name: "bills",
+                        list: "/bills",
+                      }
                     ]}
                     options={{
                       syncWithLocation: true,
