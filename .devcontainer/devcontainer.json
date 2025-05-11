@@ -8,13 +8,15 @@
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	"features": {
 		"ghcr.io/devcontainers/features/azure-cli:1": {},
+		"ghcr.io/devcontainers-extra/features/pre-commit:2": {},
+		"ghcr.io/devcontainers-extra/features/poetry:2": {},
 		"ghcr.io/nucleuscloud/devcontainer-features/helmfile:0": {},
-		"ghcr.io/devcontainers/features/kubectl-helm-minikube:1": {
-			"version": "latest",
-			"helm": "latest",
-			"minikube": "latest"
-		},
 		"ghcr.io/devcontainers-extra/features/kubectx-kubens:1": {}
+	},
+
+	"containerEnv": {
+	  "PIPENV_VENV_IN_PROJECT": "1",
+	  "POETRY_VIRTUALENVS_IN_PROJECT": "true"
 	},
 
 	"mounts": [
@@ -36,6 +38,8 @@
 	"customizations": {
 		"vscode": {
 			"extensions": [
+				"ms-python.python",
+				"ms-python.pylint",				
                 "bradlc.vscode-tailwindcss",
 				"redhat.vscode-yaml"
 				// "ms-codespaces-tools.ado-codespaces-auth"
