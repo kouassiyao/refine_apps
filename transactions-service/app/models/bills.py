@@ -1,21 +1,21 @@
-"""Bill model for the transactions service."""
+"""Bill business object model for the transactions service."""
 
 import uuid
-from sqlmodel import Field, SQLModel
+from sqlmodel import Field, Relationship, SQLModel
+from app.models.vendors import Vendor
+from app.models.common import TimestampMixin
 
-class BillBase(SQLModel, table=True):
-    """Base model for bills."""
+class BomBill(SQLModel, TimestampMixin, table=True):
+    """Base model for bills.""" 
+
     __tablename__ = "bills"
 
-    name: str
-    amount: float
-    due_date: str
-    status: str
-    created_at: str | None = Field(default=None)
-    updated_at: str | None = Field(default=None)
-
-
-class Bill(BillBase, table=True):
-    """Bill full model"""
-
     id: uuid.UUID = Field(default_factory=uuid.uuid4, primary_key=True)
+    name: str = Field(description="Name of the bill")
+    amount: float = Field(description="Amount of the bill")
+    issue_date: str = Field(description="Date the bill was issued")
+    due_date: str | None = Field(default=None, description="Due date of the bill")
+    status: str
+
+    vendor_id: uuid.UUID = Field(foreign_key="vendors.id")
+    vendor: "Vendor" = Relationship()

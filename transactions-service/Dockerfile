@@ -11,6 +11,8 @@ RUN poetry config virtualenvs.create false && poetry install --only main
 
 # Copy the rest of the application code
 COPY ./app /code/app
+COPY ./alembic /code/alembic
+COPY ./alembic.ini /code/alembic.ini
 
 ENV API_HOST=0.0.0.0
 ENV API_PORT=8000
