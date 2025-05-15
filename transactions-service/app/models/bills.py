@@ -2,7 +2,7 @@
 
 import uuid
 from sqlmodel import Field, Relationship, SQLModel
-from app.models.vendors import Vendor
+from app.models.vendors import BomVendor
 from app.models.common import TimestampMixin
 
 class BomBill(SQLModel, TimestampMixin, table=True):
@@ -18,4 +18,4 @@ class BomBill(SQLModel, TimestampMixin, table=True):
     status: str
 
     vendor_id: uuid.UUID = Field(foreign_key="vendors.id")
-    vendor: "Vendor" = Relationship()
+    vendor: "BomVendor" = Relationship()

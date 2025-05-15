@@ -2,14 +2,13 @@
 
 import uuid
 from sqlmodel import Field, SQLModel
+from app.models.common import TimestampMixin
 
-class Vendor(SQLModel, table=True):
+class BomVendor(SQLModel, TimestampMixin, table=True):
     """Base model for vendors."""
 
     __tablename__ = "vendors"
 
     id: uuid.UUID = Field(default_factory=uuid.uuid4, primary_key=True)
-    name: str
+    name: str = Field(description="Name of the vendor")
     vat_number: str | None = Field(default=None)
-    created_at: str | None = Field(default=None)
-    updated_at: str | None = Field(default=None)

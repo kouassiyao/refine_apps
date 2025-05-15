@@ -1,6 +1,7 @@
 """Bill API interface definition."""
 
 import uuid
+from datetime import datetime
 from typing import Optional
 from pydantic import BaseModel
 
@@ -15,9 +16,21 @@ class BillBase(BaseModel):
     status: str
     vendor_id: uuid.UUID
 
- 
+
 class BillCreate(BillBase):
     """Schema for creating a new Bill."""
+
+    class Config:
+        schema_extra = {
+            "example": {
+                "name": "Electricity Bill",
+                "amount": 150.75,
+                "issue_date": "2023-10-01",
+                "due_date": "2023-10-15",
+                "status": "unpaid",
+                "vendor_id": uuid.uuid4(),
+            }
+        }
 
 
 class BillUpdate(BillBase):
@@ -34,12 +47,9 @@ class BillUpdate(BillBase):
 class Bill(BillBase):
     """Schema for returning a Bill."""
 
-    id: str
-    created_at: str
-    updated_at: str
+    id: uuid.UUID
+    created_at: datetime
+    updated_at: datetime
 
     class Config:
         orm_mode = True
-
-
-    
