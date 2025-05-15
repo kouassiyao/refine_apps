@@ -1,0 +1,32 @@
+[project]
+name = "transactions-service"
+version = "0.1.0"
+description = "Financial transactions backend"
+authors = [
+    {name = "Kouassi YAO",email = "kouassi.yao@keeyind.com"}
+]
+readme = "README.md"
+requires-python = ">=3.12,<4.0"
+dependencies = [
+    "fastapi[standard] (>=0.115.12,<0.116.0)",
+    "pydantic-settings (>=2.9.1,<3.0.0)",
+    "alembic (>=1.15.2,<2.0.0)",
+    "pydantic (>=2.11.4,<3.0.0)",
+    "sqlmodel (>=0.0.24,<0.0.25)",
+    "psycopg[binary] (>=3.2.8,<4.0.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+package-mode = false
+
+[tool.poetry.group.dev.dependencies]
+pylint = "^3.3.7"
+
+[tool.poetry.group.test.dependencies]
+pytest = "^8.3.5"
+
