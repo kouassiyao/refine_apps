@@ -9,7 +9,7 @@ import React, { Suspense } from "react";
 
 import { ColorModeContextProvider } from "@contexts/color-mode";
 import { authProviderClient } from "@providers/auth-provider/auth-provider.client";
-import { dataProvider } from "@providers/data-provider";
+import { dataProvider, transactionsApiDataProvider } from "@providers/data-provider";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
 import "@refinedev/antd/dist/reset.css";
 
@@ -41,7 +41,7 @@ export default function RootLayout({
                     routerProvider={routerProvider}
                     dataProvider={{
                       default: dataProvider,
-                      bills: billsDataProvider,
+                      transactionsApi: transactionsApiDataProvider,
                     }}
                     notificationProvider={useNotificationProvider}
                     authProvider={authProviderClient}
@@ -73,6 +73,12 @@ export default function RootLayout({
                       {
                         name: "bills",
                         list: "/bills",
+                        edit: "bills/edit/:id",
+                        show: "/bills/show/:id",
+                        meta: {
+                          canDelete: true,
+                          dataProviderName: "transactionsApi",
+                        }
                       }
                     ]}
                     options={{
