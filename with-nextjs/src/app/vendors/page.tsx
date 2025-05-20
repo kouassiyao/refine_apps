@@ -19,11 +19,7 @@ export default function BillList() {
         <List>
             <Table {...tableProps} rowKey="id">
                 <Table.Column dataIndex="name" title={"Name"} />
-                <Table.Column dataIndex="issue_date" title={"Issue date"} />
-                <Table.Column dataIndex="due_date" title={"Due date"} />
-                <Table.Column dataIndex="amount" title={"Amount"} />
-                <Table.Column dataIndex="status" title={"Status"} />
-                {/* <Table.Column dataIndex="vendor_id" title={"vendor identifier"} /> */}
+                <Table.Column dataIndex="vat_number" title={"VAT"} />
                 <Table.Column
                     title={"Actions"}
                     dataIndex="actions"

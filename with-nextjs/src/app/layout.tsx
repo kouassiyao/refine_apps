@@ -67,12 +67,20 @@ export default function RootLayout({
                         },
                       },
                       {
-                        name: "invoices",
-                        list: "/invoices",
+                        name: "vendors",
+                        list: "/vendors",
+                        create: "/vendors/create",
+                        edit: "/vendors/edit/:id",
+                        show: "/vendors/show/:id",
+                        meta: {
+                          canDelete: true,
+                          dataProviderName: "transactionsApi",
+                        }
                       },
                       {
                         name: "bills",
                         list: "/bills",
+                        create: "/bills/create",
                         edit: "bills/edit/:id",
                         show: "/bills/show/:id",
                         meta: {

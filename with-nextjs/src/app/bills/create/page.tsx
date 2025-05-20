@@ -1,14 +1,20 @@
 "use client";
 
-import { Edit, useForm } from "@refinedev/antd";
-import { Form, Input, DatePicker } from "antd";
+import { Create, useForm, useSelect } from "@refinedev/antd";
+import { Form, Input, Select, DatePicker } from "antd";
 import dayjs from "dayjs";
 
-export default function BillEdit() {
-    const { formProps, saveButtonProps, query: queryResult } = useForm();
+export default function BillCreate() {
+    const { formProps, saveButtonProps } = useForm({});
+
+    const { selectProps: vendorSelectProps } = useSelect({
+        resource: "vendors", // Make sure this matches your resource name in the data provider
+        optionLabel: "name", // The field to display
+        optionValue: "id",   // The field to use as value
+    });
 
     return (
-        <Edit saveButtonProps={saveButtonProps}>
+        <Create saveButtonProps={saveButtonProps}>
             <Form {...formProps} layout="vertical">
                 <Form.Item
                     label={"Name"}
@@ -60,9 +66,39 @@ export default function BillEdit() {
                         },
                     ]}
                 >
+                    <Input type="number" />
+                </Form.Item>
+                <Form.Item
+                    label={"Vendor"}
+                    name="vendor_id"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Select
+                        showSearch
+                        allowClear
+                        placeholder="Select a vendor"
+                        filterOption={(input, option) =>
+                            (option?.label ?? "").toLowerCase().includes(input.toLowerCase())
+                        }
+                        {...vendorSelectProps}
+                    />
+                </Form.Item>
+                <Form.Item
+                    label={"Status"}
+                    name={["status"]}
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
                     <Input />
                 </Form.Item>
             </Form>
-        </Edit>
-    );
+        </Create>
+    )
 }
