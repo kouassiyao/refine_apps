@@ -1,12 +1,11 @@
 "use client";
 
 import { Edit, useForm } from "@refinedev/antd";
-import { Form, Input } from "antd";
+import { Form, Input, DatePicker } from "antd";
+import dayjs from "dayjs";
 
 export default function BillEdit() {
-    const { formProps, saveButtonProps, query: queryResult } = useForm({});
-
-    const billData = queryResult?.data?.data;
+    const { formProps, saveButtonProps, query: queryResult } = useForm();
 
     return (
         <Edit saveButtonProps={saveButtonProps}>
@@ -21,6 +20,36 @@ export default function BillEdit() {
                     ]}
                 >
                     <Input />
+                </Form.Item>
+                <Form.Item
+                    label={"Issue date"}
+                    name="issue_date"
+                    getValueProps={(value) => ({
+                        value: value ? dayjs(value) : null,
+                    })}
+                    getValueFromEvent={(date) => (date ? date.format("YYYY-MM-DD") : null)}
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <DatePicker />
+                </Form.Item>
+                <Form.Item
+                    label={"Due date"}
+                    name="due_date"
+                    getValueProps={(value) => ({
+                        value: value ? dayjs(value) : null,
+                    })}
+                    getValueFromEvent={(date) => (date ? date.format("YYYY-MM-DD") : null)}
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <DatePicker />
                 </Form.Item>
                 <Form.Item
                     label={"Amount"}

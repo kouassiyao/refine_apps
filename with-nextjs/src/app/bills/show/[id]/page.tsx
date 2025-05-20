@@ -18,6 +18,10 @@ export default function BillShow() {
             <TextField value={record?.id} />
             <Title level={5}>{"Name"}</Title>
             <TextField value={record?.name} />
+            <Title level={5}>{"Issue date"}</Title>
+            <TextField value={record?.issue_date} />
+            <Title level={5}>{"Due date"}</Title>
+            <TextField value={record?.due_date} />
             <Title level={5}>{"Amount"}</Title>
             <NumberField value={record?.amount ?? ""} />
         </Show>
