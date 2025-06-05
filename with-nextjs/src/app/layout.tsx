@@ -81,7 +81,7 @@ export default function RootLayout({
                         name: "bills",
                         list: "/bills",
                         create: "/bills/create",
-                        edit: "bills/edit/:id",
+                        edit: "/bills/edit/:id",
                         show: "/bills/show/:id",
                         meta: {
                           canDelete: true,

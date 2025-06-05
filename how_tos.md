@@ -2,6 +2,6 @@
 
 ### Init refine project with nextjs framework
 ```sh
-npm create refine-app@latest -- --example with-nextjs
+npm create refine-app@latest app-name -- --example with-nextjs
 ```
 
